@@ -15,11 +15,9 @@ package com.facebook.presto.plugin.clickhouse;
 
 import com.facebook.presto.plugin.jdbc.BaseJdbcConfig;
 import com.facebook.presto.plugin.jdbc.JdbcClient;
-import com.facebook.presto.plugin.jdbc.QueryBuilder;
 import com.google.inject.Binder;
 import com.google.inject.Module;
 import com.google.inject.Scopes;
-//import com.google.inject.name.Names;
 
 import static io.airlift.configuration.ConfigBinder.configBinder;
 
@@ -30,14 +28,6 @@ public class ClickhouseClientModule
     public void configure(Binder binder)
     {
         binder.bind(JdbcClient.class).to(ClickhouseClient.class).in(Scopes.SINGLETON);
-        binder.bind(QueryBuilder.class).toInstance(new ClickhouseQueryBuilder("\""));
-//        binder.bind(QueryBuilder.class).annotatedWith(Names.named("quote")).to(ClickhouseQueryBuilder.class).in(Scopes.SINGLETON);
-//        try {
-//            binder.bind(QueryBuilder.class).toConstructor(ClickhouseQueryBuilder.class.getConstructor(String.class));
-//        }
-//        catch (NoSuchMethodException E) {
-//            System.err.println(E.toString());
-//        }
         configBinder(binder).bindConfig(BaseJdbcConfig.class);
     }
 }

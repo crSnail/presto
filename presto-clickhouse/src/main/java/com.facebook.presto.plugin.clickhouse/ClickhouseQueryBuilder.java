@@ -40,11 +40,6 @@ import com.google.common.collect.ImmutableList;
 import io.airlift.slice.Slice;
 import org.joda.time.DateTimeZone;
 
-//import javax.inject.Inject;
-import javax.inject.Inject;
-import javax.inject.Named;
-//import javax.inject.Singleton;
-
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -96,8 +91,7 @@ public class ClickhouseQueryBuilder
         }
     }
 
-    @Inject
-    public ClickhouseQueryBuilder(@Named("quote") String quote)
+    public ClickhouseQueryBuilder(String quote)
     {
         super(quote);
         this.quote = requireNonNull(quote, "quote is null");
